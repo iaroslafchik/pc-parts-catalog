@@ -1,0 +1,9 @@
+# PHP runtime container used by nginx + php-fpm
+
+FROM php:8.3-fpm
+
+# Install PDO extension for MariaDB/MySQL access
+RUN docker-php-ext-install pdo pdo_mysql
+
+# Copy application (optional for production builds)
+WORKDIR /var/www/html

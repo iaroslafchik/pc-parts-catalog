@@ -3,17 +3,17 @@
 require_once __DIR__ . '/../src/queries.php';
 require_once __DIR__ . '/../src/helpers.php';
 
-$category = $_GET['name'] ?? '';
+$manufacturer = $_GET['name'] ?? '';
 
-$components = getPartsByCategory($pdo, $category);
+$components = getPartsByManufacturer($pdo, $manufacturer);
 ?>
 
-<h1>Category: <?= e($category) ?></h1>
+<h1>Manufacturer: <?= e($manufacturer) ?></h1>
 
 <ul>
 <?php foreach ($components as $c): ?>
     <li>
-        <?= e($c['manufacturer']) ?> |
+        <?= e($c['category']) ?> |
         <?= e($c['model']) ?> |
         €<?= e($c['price']) ?>
     </li>

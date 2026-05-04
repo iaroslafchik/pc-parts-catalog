@@ -4,8 +4,8 @@
 services:
 
   nginx:
-    image: nginx:alpine
-    container_name: pc_nginx
+    image: nginx:mainline-alpine-slim
+    container_name: pc_parts_nginx
     ports:
       - "8080:80" # expose web app on localhost:8080
     volumes:
@@ -16,7 +16,7 @@ services:
 
   php:
     build: .
-    container_name: pc_php
+    container_name: pc_parts_php
     volumes:
       - .:/var/www/html # full project mounted for development
     environment:
@@ -28,8 +28,8 @@ services:
       - db
 
   db:
-    image: mariadb:11
-    container_name: pc_db
+    image: mariadb:lts
+    container_name: pc_parts_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD} # root password from .env
@@ -39,7 +39,8 @@ services:
     ports:
       - "3306:3306" # optional external DB access
     volumes:
-      - db_data:/var/lib/mysql # persistent storage
+      - pc_parts_db_data:/var/lib/mysql # persistent storage
+      - ./sql:/docker-entrypoint-initdb.d
 
 volumes:
-  db_data:
+  pc_parts_db_data:

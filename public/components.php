@@ -3,11 +3,11 @@
 require_once __DIR__ . '/../src/queries.php';
 require_once __DIR__ . '/../src/helpers.php';
 
-$components = getComponents($pdo);
+$components = getParts($pdo);
 
 // Simple HTML output (no framework for minimal setup)
 ?>
-<h1>All Components</h1>
+<h1>All Parts</h1>
 
 <ul>
 <?php foreach ($components as $c): ?>

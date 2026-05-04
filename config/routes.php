@@ -7,5 +7,6 @@ return [
     '/categories' => 'categories.php',
     '/components' => 'components.php',
     '/manufacturers' => 'manufacturers.php',
-    '/category' => 'category.php'
+    '/category' => 'category.php',
+    '/manufacturer' => 'manufacturer.php'
 ];

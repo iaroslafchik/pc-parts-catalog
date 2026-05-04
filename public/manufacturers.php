@@ -10,6 +10,10 @@ $manufacturers = getManufacturers($pdo);
 
 <ul>
 <?php foreach ($manufacturers as $m): ?>
-    <li><?= e($m['manufacturer']) ?></li>
+    <li>
+        <a href="/manufacturer?name=<?= e($m['manufacturer']) ?>">
+            <?= e($m['manufacturer']) ?>
+        </a>
+    </li>
 <?php endforeach; ?>
 </ul>

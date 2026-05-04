@@ -3,9 +3,9 @@
 // Simple routing map (no framework used for minimal footprint)
 
 return [
-    '/' => 'components.php',
+    '/' => 'parts.php',
     '/categories' => 'categories.php',
-    '/components' => 'components.php',
+    '/parts' => 'parts.php',
     '/manufacturers' => 'manufacturers.php',
     '/category' => 'category.php',
     '/manufacturer' => 'manufacturer.php'

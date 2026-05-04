@@ -1,6 +1,6 @@
--- Database schema for PC component price list
+-- Database schema for PC parts price list
 
-CREATE TABLE components (
+CREATE TABLE parts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     category VARCHAR(100),
     manufacturer VARCHAR(100),

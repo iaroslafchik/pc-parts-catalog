@@ -2,7 +2,7 @@
 
 // Loads DB credentials from environment variables for security
 $host = getenv('DB_HOST');
-$db   = getenv('DB_NAME');
+$db = getenv('DB_NAME');
 $user = getenv('DB_USER');
 $pass = getenv('DB_PASS');
 

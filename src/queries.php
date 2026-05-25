@@ -35,3 +35,30 @@ function getPartsByManufacturer($pdo, $manufacturer)
     $stmt->execute([$manufacturer]);
     return $stmt->fetchAll();
 }
+
+/**
+ * Search components by manufacturer, model, or category
+ */
+function searchComponents($pdo, $query) {
+
+    $sql = "
+        SELECT *
+        FROM parts
+        WHERE
+            manufacturer LIKE ?
+            OR model LIKE ?
+            OR category LIKE ?
+    ";
+
+    $search = '%' . $query . '%';
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([
+        $search,
+        $search,
+        $search
+    ]);
+
+    return $stmt->fetchAll();
+}

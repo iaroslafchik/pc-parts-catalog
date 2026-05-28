@@ -178,3 +178,22 @@ footer {
     margin: 0;
     line-height: normal;
 }
+
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.filters input {
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+}
+
+.filters button {
+    padding: 4px 10px;
+    border: 1px solid #000;
+    background: #fff;
+    cursor: pointer;
+}

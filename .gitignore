@@ -18,7 +18,7 @@
 !/.gitignore
 !/.env.example
 !/nginx.conf
-!/dockerfile
+!/Dockerfile
 !/docker-compose.yml
 
 *~

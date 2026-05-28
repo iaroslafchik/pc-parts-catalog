@@ -13,7 +13,7 @@ $components = [];
 
 // Only search if query exists
 if ($query !== '') {
-    $components = searchComponents($pdo, $query);
+    $components = searchParts($pdo, $query);
 }
 
 ?>

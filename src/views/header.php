@@ -4,6 +4,7 @@
             <a href="/">Главная</a>
             <a href="/parts">Все комплектующие</a>
             <a href="/categories">Категории</a>
+            <a href="/manufacturers">Производители</a>
     
         </nav>
     </div>

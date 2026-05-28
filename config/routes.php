@@ -9,5 +9,6 @@ return [
     '/manufacturers' => 'manufacturers.php',
     '/category' => 'category.php',
     '/manufacturer' => 'manufacturer.php',
-    '/search' => 'search.php'
+    '/search' => 'search.php',
+    '/part' => 'part.php'
 ];

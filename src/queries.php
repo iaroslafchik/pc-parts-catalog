@@ -15,9 +15,41 @@ function getManufacturers($pdo)
 }
 
 // Get all parts
-function getParts($pdo)
-{
-    return $pdo->query("SELECT * FROM parts")->fetchAll();
+function getParts($pdo, $filters = []) {
+
+    // Base SQL
+    $sql = "SELECT * FROM parts WHERE 1=1";
+
+    $params = [];
+
+    // Filter by category
+    if (!empty($filters['category'])) {
+        $sql .= " AND category = ?";
+        $params[] = $filters['category'];
+    }
+
+    // Filter by manufacturer
+    if (!empty($filters['manufacturer'])) {
+        $sql .= " AND manufacturer = ?";
+        $params[] = $filters['manufacturer'];
+    }
+
+    // Min price
+    if (!empty($filters['min_price'])) {
+        $sql .= " AND price >= ?";
+        $params[] = (float)$filters['min_price'];
+    }
+
+    // Max price
+    if (!empty($filters['max_price'])) {
+        $sql .= " AND price <= ?";
+        $params[] = (float)$filters['max_price'];
+    }
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll();
 }
 
 // Get components by category
@@ -39,7 +71,7 @@ function getPartsByManufacturer($pdo, $manufacturer)
 /**
  * Search components by manufacturer, model, or category
  */
-function searchComponents($pdo, $query) {
+function searchParts($pdo, $query) {
 
     $sql = "
         SELECT *
@@ -59,6 +91,57 @@ function searchComponents($pdo, $query) {
         $search,
         $search
     ]);
+
+    return $stmt->fetchAll();
+}
+
+function getPartById($pdo, $id) {
+
+    $stmt = $pdo->prepare("
+        SELECT *
+        FROM parts
+        WHERE id = ?
+        LIMIT 1
+    ");
+
+    $stmt->execute([$id]);
+
+    return $stmt->fetch();
+}
+
+function getComponents($pdo, $filters = []) {
+
+    // Base SQL
+    $sql = "SELECT * FROM parts WHERE 1=1";
+
+    $params = [];
+
+    // Filter by category
+    if (!empty($filters['category'])) {
+        $sql .= " AND category = ?";
+        $params[] = $filters['category'];
+    }
+
+    // Filter by manufacturer
+    if (!empty($filters['manufacturer'])) {
+        $sql .= " AND manufacturer = ?";
+        $params[] = $filters['manufacturer'];
+    }
+
+    // Min price
+    if (!empty($filters['min_price'])) {
+        $sql .= " AND price >= ?";
+        $params[] = (float)$filters['min_price'];
+    }
+
+    // Max price
+    if (!empty($filters['max_price'])) {
+        $sql .= " AND price <= ?";
+        $params[] = (float)$filters['max_price'];
+    }
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
 
     return $stmt->fetchAll();
 }

@@ -7,9 +7,18 @@ $title = "Все комплектующие";
 
 ob_start();
 
-$components = getParts($pdo);
+$filters = [
+    'category' => $_GET['category'] ?? '',
+    'manufacturer' => $_GET['manufacturer'] ?? '',
+    'min_price' => $_GET['min_price'] ?? '',
+    'max_price' => $_GET['max_price'] ?? ''
+];
+
+$components = getParts($pdo, $filters);
 
 // Simple HTML output (no framework for minimal setup)
+
+require __DIR__ . '/../src/views/parts-filters.php';
 
 // reuse grid renderer
 require __DIR__ . '/../src/views/parts-grid.php';
